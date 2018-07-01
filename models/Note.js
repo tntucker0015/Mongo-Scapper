@@ -1,10 +1,11 @@
 var mongoose =require('mongoose');
 var Schema = mongoose.Schema;
-var NOteSchema = new Schema({
+
+var NoteSchema = new Schema({
   title: String,
   body: String
 });
 
-var NOTE = mongoose.model("Note", NoteSchema);
+var Note = mongoose.model("Note", NoteSchema);
 
 module.exports = Note;

@@ -12,12 +12,12 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended:true}));
 app.use(express.static('public'));
 
-mongoose.connect('mongodb/localhost/pokemonNews');
+mongoose.connect('mongodb://localhost/pokemonNews');
 
 app.get("/scrape", function(req, res) {
   axios.get("https://www.pokemon.com/us/pokemon-news/").then(function(response) {
     var $ =cheerio.load(response.data);
-    $("article h3").each(function(i, element) {
+    $("article h2").each(function(i, element) {
       var result ={};
 
       result.title =$(this)
