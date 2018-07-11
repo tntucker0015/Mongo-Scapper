@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mrauto">
       <li class="nav-item">
-        <a class="nav-link" href="/saved">saved Articles</a>
+        <a class="nav-link" href="/saved">Saved Articles</a>
       </li>
       <li class="nav-item">
         <span class="nav-link scrape" style="cursor: pointer">Scrape New Articles</span>
@@ -33,14 +33,13 @@
  {{#each unsavedArticles}}
 <div class="class row">
   <div class="card mb-3 col-md-6 col-sm-8 col-xs-12" id="cardArticle">
-    <a href={link}} target="-blank" class="articleLink">
+    <a href={{link}} target="-blank" class="articleLink">
       <h3 class="cardheader">{{title}}</h3>
     </a>
     <div class="card-body row">
       <div class="col-md-6">
         <p>
           <span class="card-title">{{author}}</span>
-          <span style="color:grey">|</span>
           <span class="card-subtitle text-muted">{{time}}</span>
         </p>
         <p class="card-text">{{summary}}</p>

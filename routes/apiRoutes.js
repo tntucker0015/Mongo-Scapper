@@ -5,13 +5,13 @@ const db = require("../models");
 
 module.exports = function (app) {
 
-// A GET route for scraping the gamespot website
+
 app.get("/scrape", function(req, res) {
-  // First, we grab the body of the html with request
+ 
   axios.get("https://www.gamespot.com/news/").then(function(response) {
     // Then, we load that into cheerio and save it to $ for a shorthand selector
     var $ = cheerio.load(response.data);
-console.log(response.data);
+
     // Now, we grab every h2 within an article tag, and do the following:
     $("article").each(function(i, element) {
       // Save an empty result object
@@ -24,7 +24,7 @@ console.log(response.data);
       result.link = $(this)
         .children("a")
         .attr("href");
-
+      console.log(result.link);
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
         .then(function(dbArticle) {
@@ -36,8 +36,6 @@ console.log(response.data);
           return res.json(err);
         });
     });
-
-    // If we were able to successfully scrape and save an Article, send a message to the client
     res.send("Scrape Complete");
   });
 });
@@ -59,7 +57,7 @@ app.get("/articles", function(req, res) {
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-  db.Article.findOne({ _id: req.params.id })
+  db.Articles.findOne({ _id: req.params.id })
     // ..and populate all of the notes associated with it
     .populate("note")
     .then(function(dbArticle) {

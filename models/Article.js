@@ -10,16 +10,6 @@ const ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  author: {
-    type: String,
-    trim: true,
-    required: true
-  },
-  summary: {
-    type: String,
-    trim: true,
-    required: true,
-  },
   time: {
     type: Date
   },
